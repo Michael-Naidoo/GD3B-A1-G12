@@ -562,7 +562,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 1957678201}
   m_Layer: 0
   m_Name: GridSystem
-  m_TagString: Untagged
+  m_TagString: GridSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -763,9 +763,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e498c3994f5c02498ed3a9e451b9ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matX: 0
-  matY: 0
-  gridSquare: {fileID: 0}
+  matX: 30
+  matY: 30
+  gridSquare: {fileID: 1919835084745038498, guid: 9d57e32672c7e824e90bd47b20d3bac8, type: 3}
+  canvasGO: {fileID: 850667078}
+  offsetMultX: 35
+  offsetAddX: 471
+  offsetMultY: 35
+  offsetAddY: 37.5
 --- !u!4 &1957678202
 Transform:
   m_ObjectHideFlags: 0

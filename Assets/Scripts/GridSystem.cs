@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
-    //create a new 2d array
+    private float tempTimer = 10;
+    
     public int[][] matrix;
-
-    [SerializeField] private int matX;
-    [SerializeField] private int matY;
+    public int matX;
+    public int matY;
+    public int[][] matrixTemp;
     
     [SerializeField] private GameObject gridSquare;
     [SerializeField] private GameObject canvasGO;
@@ -18,9 +19,38 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private float offsetAddX; 
     [SerializeField] private float offsetMultY;
     [SerializeField] private float offsetAddY;
+
     private void Start()
     {
+        if (gridSquare == null || canvasGO == null)
+        {
+            Debug.LogError("GridSquare or CanvasGO not set!");
+            return;
+        }
+        
         InstantiateMatrix(matX, matY);
+    }
+
+    void TempSpawnCenti()
+    {
+        tempTimer -= Time.deltaTime;
+        if (tempTimer <= 0)
+        {
+            tempTimer = 10;
+            if (matrix != null && matrix.Length > 28 && matrix[28].Length > 15)
+            {
+                matrix[28][15] = 1;
+            }
+            else
+            {
+                Debug.LogError("Matrix is not properly initialized or out of bounds access attempted!");
+            }
+        }
+    }
+
+    private void Update()
+    {
+        TempSpawnCenti();
     }
 
     void InstantiateMatrix(int x, int y)
@@ -31,24 +61,34 @@ public class GridSystem : MonoBehaviour
         {
             matrix[i] = new int[y]; // Initialize each row
         }
+        // Initialize the matrix
+        matrixTemp = new int[x][];
+        for (int i = 0; i < x; i++)
+        {
+            matrixTemp[i] = new int[y]; // Initialize each row
+        }
         
-        //create a grid of x by y
+        // Create a grid of x by y
         for (int i = 0; i < x; i++)
         {
             for (int j = 0; j < y; j++)
             {
-                //loop through each cell and instantiate it at 0 with 0 meaning empty
                 matrix[i][j] = 0;
-                //spawn a game object that will hold the sprites for each cell
-                //offsetMultX is the x size of the bocks
-                //offsetMultY is the y size of the bocks
-                //offsetAddX is half the x size of the bocks
-                //offsetAddY is half the y size of the bocks
+                matrixTemp[i][j] = 0;
                 Vector3 position = new Vector3(i * offsetMultX + offsetAddX, j * offsetMultY + offsetAddY, 0);
-
                 GameObject gS = Instantiate(gridSquare, position, quaternion.identity, canvasGO.transform);
-                // set the cell reference on the game object
-                gS.GetComponent<CellBehaviorHandler>().GetCellData(i, j);
+                if (gS != null)
+                {
+                    gS.GetComponent<CellBehaviorHandler>().GetCellData(i, j);
+                    if (i == x - 1 && j == y - 1)
+                    {
+                        gS.GetComponent<CellBehaviorHandler>().isLastCell = true;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Failed to instantiate gridSquare!");
+                }
             }
         }
     }
