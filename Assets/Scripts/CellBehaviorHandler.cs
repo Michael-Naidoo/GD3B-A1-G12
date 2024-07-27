@@ -55,8 +55,7 @@ namespace DefaultNamespace
                 StartCoroutine(MoveCell());
                 if (isLastCell == true)
                 {
-                    // if this is the last cell then update the matrix
-                    gS.matrix = gS.matrixTemp;
+                    gS.Swap();
                 }
             }
         }

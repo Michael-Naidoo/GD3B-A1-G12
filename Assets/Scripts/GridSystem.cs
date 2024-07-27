@@ -53,6 +53,11 @@ public class GridSystem : MonoBehaviour
         TempSpawnCenti();
     }
 
+    public void Swap()
+    {
+        matrixTemp = matrix;
+    }
+
     void InstantiateMatrix(int x, int y)
     {
         // Initialize the matrix
