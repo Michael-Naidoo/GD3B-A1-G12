@@ -763,10 +763,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e498c3994f5c02498ed3a9e451b9ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centiSpeed: 100
   matX: 30
   matY: 30
   gridSquare: {fileID: 1919835084745038498, guid: 9d57e32672c7e824e90bd47b20d3bac8, type: 3}
   canvasGO: {fileID: 850667078}
+  CentiPiece: {fileID: 6090045813290177510, guid: 786d9339517ab1e41a53912042953602, type: 3}
   offsetMultX: 35
   offsetAddX: 471
   offsetMultY: 35

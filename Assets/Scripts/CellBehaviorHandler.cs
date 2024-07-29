@@ -50,23 +50,18 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            if (gS != null && !isMoving)
-            {
-                StartCoroutine(MoveCell());
-                if (isLastCell == true)
-                {
-                    gS.Swap();
-                }
-            }
+            
+               StartCoroutine(MoveCell()); 
+            
         }
 
         private IEnumerator MoveCell()
         {
-            isMoving = true;
+            
             CalculateNextVal();
             ShowCellSprite();
             yield return new WaitForSeconds(moveDelay);
-            isMoving = false;
+            
         }
 
         private void ShowCellSprite()
@@ -75,22 +70,25 @@ namespace DefaultNamespace
             // all this does is give each value a diferent color so that i can identify whats happening
             
             int cellValue = GetCellValue(xVal, yVal);
+            var color = image.color;
             switch (cellValue)
             {
                 case 0:
-                    image.color = Color.white;
+                    color = Color.white;
+                    color.a = 0;
                     break;
                 case 1:
-                    image.color = Color.green;
+                    color = Color.black;
+                    color.a = 255;
                     break;
                 case 2:
-                    image.color = Color.red;
+                    color = Color.red;
                     break;
                 case 3:
-                    image.color = Color.blue;
+                    color = Color.blue;
                     break;
                 case 4:
-                    image.color = Color.black;
+                    color = Color.black;
                     break;
                 default:
                     Debug.LogError("Invalid cell value: " + cellValue);
@@ -211,7 +209,7 @@ namespace DefaultNamespace
                 newVal = 0;
             }
 
-            gS.matrixTemp[xVal][yVal] = newVal;
+            gS.matrix[xVal][yVal] = newVal;
             Debug.Log("Cell [" + xVal + ", " + yVal + "] updated to value: " + newVal);
         }
     }

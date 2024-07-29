@@ -2,18 +2,24 @@ using System;
 using DefaultNamespace;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GridSystem : MonoBehaviour
 {
+    public float centiSpeed;
+    
     private float tempTimer = 10;
     
     public int[][] matrix;
     public int matX;
     public int matY;
-    public int[][] matrixTemp;
+    public GameObject[][] MatrixGameObjects;
+    
+    int centiCount = 1;
     
     [SerializeField] private GameObject gridSquare;
     [SerializeField] private GameObject canvasGO;
+    [SerializeField] private GameObject CentiPiece;
     
     [SerializeField] private float offsetMultX;
     [SerializeField] private float offsetAddX; 
@@ -37,9 +43,22 @@ public class GridSystem : MonoBehaviour
         if (tempTimer <= 0)
         {
             tempTimer = 10;
-            if (matrix != null && matrix.Length > 28 && matrix[28].Length > 15)
+            if (matrix != null && matrix.Length >= 30 && matrix[29].Length >= 16)
             {
-                matrix[28][15] = 1;
+                if (centiCount > 0)
+                {
+                    centiCount--;
+                    Vector3 pos = MatrixGameObjects[15][29].transform.position;
+                    GameObject centi = Instantiate(CentiPiece, canvasGO.transform, true);
+                    centi.transform.position = pos;
+                    centi.GetComponent<CentipedeBehaviour>().speed = centiSpeed;
+                    centi.GetComponent<CentipedeBehaviour>().targetX = 16;
+                    centi.GetComponent<CentipedeBehaviour>().targetY = 29;
+                    centi.GetComponent<CentipedeBehaviour>().currentX = 15;
+                    centi.GetComponent<CentipedeBehaviour>().currentY = 29;
+                    centi.GetComponent<CentipedeBehaviour>().direction = CentipedeBehaviour.DesiredDirection.Right;
+                    centi.GetComponent<CentipedeBehaviour>().previousDirection = CentipedeBehaviour.DesiredDirection.NR;
+                }
             }
             else
             {
@@ -52,11 +71,7 @@ public class GridSystem : MonoBehaviour
     {
         TempSpawnCenti();
     }
-
-    public void Swap()
-    {
-        matrixTemp = matrix;
-    }
+    
 
     void InstantiateMatrix(int x, int y)
     {
@@ -66,11 +81,12 @@ public class GridSystem : MonoBehaviour
         {
             matrix[i] = new int[y]; // Initialize each row
         }
-        // Initialize the matrix
-        matrixTemp = new int[x][];
+
+        // Initialize the MatrixGameObjects array
+        MatrixGameObjects = new GameObject[x][];
         for (int i = 0; i < x; i++)
         {
-            matrixTemp[i] = new int[y]; // Initialize each row
+            MatrixGameObjects[i] = new GameObject[y]; // Initialize each row
         }
         
         // Create a grid of x by y
@@ -79,12 +95,13 @@ public class GridSystem : MonoBehaviour
             for (int j = 0; j < y; j++)
             {
                 matrix[i][j] = 0;
-                matrixTemp[i][j] = 0;
                 Vector3 position = new Vector3(i * offsetMultX + offsetAddX, j * offsetMultY + offsetAddY, 0);
-                GameObject gS = Instantiate(gridSquare, position, quaternion.identity, canvasGO.transform);
+                GameObject gS = Instantiate(gridSquare, canvasGO.transform, true);
+                gS.transform.position = position;
                 if (gS != null)
                 {
                     gS.GetComponent<CellBehaviorHandler>().GetCellData(i, j);
+                    MatrixGameObjects[i][j] = gS;
                     if (i == x - 1 && j == y - 1)
                     {
                         gS.GetComponent<CellBehaviorHandler>().isLastCell = true;
