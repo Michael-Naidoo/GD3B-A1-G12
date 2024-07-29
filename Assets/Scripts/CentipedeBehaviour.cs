@@ -113,5 +113,11 @@ namespace DefaultNamespace
                 }
             }
         }
+        
+        public void HasBeenHit()
+        {
+            gS.matrix[targetX][targetY] = 1;
+            Destroy(gameObject);
+        }
     }
 }
