@@ -8,15 +8,14 @@ public class GridSystem : MonoBehaviour
 {
     public float centiSpeed;
     
-    private float tempTimer = 10;
+    [SerializeField] private float tempTimer = 10;
+    [SerializeField] private int centiCount = 10;
     
     public int[][] matrix;
     public int matX;
     public int matY;
     public GameObject[][] MatrixGameObjects;
-    
-    int centiCount = 1;
-    
+
     [SerializeField] private GameObject gridSquare;
     [SerializeField] private GameObject canvasGO;
     [SerializeField] private GameObject CentiPiece;
@@ -42,7 +41,7 @@ public class GridSystem : MonoBehaviour
         tempTimer -= Time.deltaTime;
         if (tempTimer <= 0)
         {
-            tempTimer = 10;
+            tempTimer = 0.33f;
             if (matrix != null && matrix.Length >= 30 && matrix[29].Length >= 16)
             {
                 if (centiCount > 0)
