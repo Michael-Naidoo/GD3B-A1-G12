@@ -14,12 +14,12 @@ namespace DefaultNamespace
 
         void Move()
         {
-            Vector3 target = transform.position + (transform.up * 10);
-            transform.position = Vector3.MoveTowards(transform.position, target, speed);
+            transform.Translate(Vector3.up * Time.deltaTime * speed, Space.World);
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Hit Confirmed");
             if (other.gameObject.CompareTag("CentiPiece"))
             {
                 other.gameObject.GetComponent<CentipedeBehaviour>().HasBeenHit();
