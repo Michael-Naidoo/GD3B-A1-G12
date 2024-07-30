@@ -744,6 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957678202}
   - component: {fileID: 1957678201}
+  - component: {fileID: 1957678203}
   m_Layer: 0
   m_Name: GridSystem
   m_TagString: GridSystem
@@ -790,6 +791,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1957678203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957678200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0471af39df4a7cae35979171767113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4905412014524459572, guid: 145a0a50109892b42b990b1f7b0de27f, type: 3}
+  canvasGO: {fileID: 850667078}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
