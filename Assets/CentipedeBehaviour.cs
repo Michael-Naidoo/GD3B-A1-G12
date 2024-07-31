@@ -117,6 +117,7 @@ namespace DefaultNamespace
         public void HasBeenHit()
         {
             gS.matrix[targetX][targetY] = 1;
+            Debug.Log("Has Been Hit Called");
             Destroy(gameObject);
         }
     }

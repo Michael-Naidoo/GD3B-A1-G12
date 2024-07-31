@@ -17,7 +17,7 @@ namespace DefaultNamespace
             transform.Translate(Vector3.up * Time.deltaTime * speed, Space.World);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             Debug.Log("Hit Confirmed");
             if (other.gameObject.CompareTag("CentiPiece"))
