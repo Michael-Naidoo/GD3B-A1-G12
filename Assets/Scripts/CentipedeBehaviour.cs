@@ -58,7 +58,7 @@ namespace DefaultNamespace
                 return x >= 0 && x < gS.matrix.Length && y >= 0 && y < gS.matrix[0].Length;
             }
 
-            if ((direction == DesiredDirection.Left || direction == DesiredDirection.Right) && (targetX == 0 || targetX == gS.matrix.Length))
+            if ((direction == DesiredDirection.Left || direction == DesiredDirection.Right) && (targetX == 0 || currentX == gS.matrix.Length) && targetY == 0)
                 {
                 previousDirection = direction;
                 direction = DesiredDirection.Up;
