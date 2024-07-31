@@ -7,6 +7,8 @@ namespace DefaultNamespace
     {
         [SerializeField] private float speed;
 
+        public AudioSource centipedeShot;
+
         private void Update()
         {
             Move();
@@ -22,8 +24,10 @@ namespace DefaultNamespace
             Debug.Log("Hit Confirmed");
             if (other.gameObject.CompareTag("CentiPiece"))
             {
+                
                 other.gameObject.GetComponent<CentipedeBehaviour>().HasBeenHit();
                 Destroy(gameObject);
+                
             }
         }
     }
