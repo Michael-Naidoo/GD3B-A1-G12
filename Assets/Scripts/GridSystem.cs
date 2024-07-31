@@ -7,11 +7,13 @@ using UnityEngine.UIElements;
 
 public class GridSystem : MonoBehaviour
 {
+    public int currentCentiCount = 0; 
+    public int maxCentiPieces = 15;
     public float centiSpeed;
     
     [SerializeField] private float tempTimer = 10;
     [SerializeField] private float spawnTimer = 10;
-    [SerializeField] private int centiCount = 10;
+    [SerializeField] private int centiCount = 15;
     
     public int[][] matrix;
     public int matX;
@@ -29,6 +31,8 @@ public class GridSystem : MonoBehaviour
 
     private void Start()
     {
+        centiCount = maxCentiPieces;
+
         if (gridSquare == null || parentGameObject == null)
         {
             Debug.LogError("GridSquare or CanvasGO not set!");
@@ -40,12 +44,17 @@ public class GridSystem : MonoBehaviour
 
     void TempSpawnCenti()
     {
+
         tempTimer -= Time.deltaTime;
         if (tempTimer <= 0)
         {
             tempTimer = spawnTimer;
             if (matrix != null && matrix.Length >= 30 && matrix[29].Length >= 16)
             {
+                if (centiCount == 1)
+                {
+                    currentCentiCount = maxCentiPieces;
+                }
                 if (centiCount > 0)
                 {
                     centiCount--;
@@ -60,6 +69,10 @@ public class GridSystem : MonoBehaviour
                     centi.GetComponent<CentipedeBehaviour>().direction = CentipedeBehaviour.DesiredDirection.Right;
                     centi.GetComponent<CentipedeBehaviour>().previousDirection = CentipedeBehaviour.DesiredDirection.NR;
                 }
+                else
+                {
+                    centiCount = maxCentiPieces;
+                }
             }
             else
             {
@@ -70,7 +83,10 @@ public class GridSystem : MonoBehaviour
 
     private void Update()
     {
-        TempSpawnCenti();
+        if (currentCentiCount <= 0)
+        {
+            TempSpawnCenti();
+        }
     }
     
 

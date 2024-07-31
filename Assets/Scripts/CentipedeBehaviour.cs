@@ -56,6 +56,13 @@ namespace DefaultNamespace
                 return x >= 0 && x < gS.matrix.Length && y >= 0 && y < gS.matrix[0].Length;
             }
 
+            if ((direction == DesiredDirection.Left || direction == DesiredDirection.Right) && (targetX == 0 || targetX == gS.matrix.Length))
+                {
+                previousDirection = direction;
+                direction = DesiredDirection.Up;
+                currentY = targetY;
+                targetY++;
+            }
             if (direction == DesiredDirection.Down)
             {
                 if (previousDirection == DesiredDirection.Right && isWithinBounds(currentX - 1, currentY) || gS.matrix[currentX - 1][currentY] == 1)
@@ -116,6 +123,7 @@ namespace DefaultNamespace
         
         public void HasBeenHit()
         {
+            gS.currentCentiCount--;
             gS.matrix[targetX][targetY] = 1;
             Debug.Log("Has Been Hit Called");
             Destroy(gameObject);
