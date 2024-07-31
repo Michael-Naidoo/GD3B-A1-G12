@@ -14,6 +14,8 @@ namespace DefaultNamespace
         public int currentX;
         public int currentY;
 
+        public AudioSource centipedeHit;
+
         public enum DesiredDirection
         {
             Left,
