@@ -38,15 +38,18 @@ namespace DefaultNamespace
         {
             
                StartCoroutine(MoveCell()); 
+            if (gS.matrix[xVal][yVal] == 1)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+
             
         }
 
         private IEnumerator MoveCell()
         {
-            
-            CalculateNextVal();
             yield return new WaitForSeconds(moveDelay);
-            
+           
         }
 
         public void GetCellData(int x, int y)
