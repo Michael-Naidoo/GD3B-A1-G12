@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GridSystem
   - CentiPiece
+  - Mushroom
   layers:
   - Default
   - TransparentFX

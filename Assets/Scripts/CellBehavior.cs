@@ -6,8 +6,9 @@ namespace DefaultNamespace
 {
     public class CellBehaviorHandler : MonoBehaviour
     {
-        [SerializeField] private int xVal;
-        [SerializeField] private int yVal;
+        [SerializeField] public int xVal;
+        [SerializeField] public int yVal;
+        public GameObject mushroom;
 
         private int left;
         private int right;
@@ -39,9 +40,13 @@ namespace DefaultNamespace
             
                StartCoroutine(MoveCell()); 
             if (gS.matrix[xVal][yVal] == 1)
-                {
-                    gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-                }
+            { 
+                mushroom.SetActive(true);
+            }
+            else if (gS.matrix[xVal][yVal] == 0)
+            {
+                mushroom.SetActive(false);
+            }
 
             
         }

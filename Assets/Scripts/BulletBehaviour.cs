@@ -29,6 +29,11 @@ namespace DefaultNamespace
                 Destroy(gameObject);
                 
             }
+            else if (other.gameObject.CompareTag("Mushroom") && other.gameObject.transform.GetChild(0).gameObject.activeSelf)
+            {
+                other.gameObject.transform.GetChild(0).GetComponent<MushroomHandler>().HasBeenHit();
+                Destroy(gameObject);
+            }
         }
     }
 }
