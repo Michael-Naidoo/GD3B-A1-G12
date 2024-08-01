@@ -6,22 +6,26 @@ namespace DefaultNamespace
     public class BulletBehaviour : MonoBehaviour
     {
         [SerializeField] public float speed; // Made public.
-
         public AudioSource centipedeShot;
-
-        // Added variable to check if player can shoot.
         public bool canShoot = true;
+
+        private float timeSinceInstantiation;
 
         private void Awake()
         {
             canShoot = true;
+            timeSinceInstantiation = 0f;
         }
-
-
 
         private void Update()
         {
             Move();
+            timeSinceInstantiation += Time.deltaTime;
+
+            if (timeSinceInstantiation > 1f)
+            {
+                Destroy(gameObject);
+            }
         }
 
         void Move()
@@ -34,18 +38,15 @@ namespace DefaultNamespace
             Debug.Log("Hit Confirmed");
             if (other.gameObject.CompareTag("CentiPiece"))
             {
-                
                 other.gameObject.GetComponent<CentipedeBehaviour>().HasBeenHit();
                 Destroy(gameObject);
                 canShoot = true;
-                
             }
             else if (other.gameObject.CompareTag("Mushroom") && other.gameObject.transform.GetChild(0).gameObject.activeSelf)
             {
                 other.gameObject.transform.GetChild(0).GetComponent<MushroomHandler>().HasBeenHit();
                 Destroy(gameObject);
                 canShoot = true;
-
             }
 
             // Added bullet being destroyed after colliding with zone outside screen.
@@ -55,8 +56,5 @@ namespace DefaultNamespace
                 canShoot = true;
             }
         }
-
-
-       
     }
 }

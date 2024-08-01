@@ -23,13 +23,11 @@ namespace DefaultNamespace
                 {
                     shootSound.Play();
                     Vector2 playerPosition = playerTransform.position; // Uses player position instead of mouse position.
-                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 direction = (mousePosition - playerPosition).normalized;
 
                     currentBullet = Instantiate(bullet, playerPosition, quaternion.identity, parentGameObject.transform); // Spawns bullet from player position.
-                    currentBullet.GetComponent<Rigidbody2D>().velocity = direction * currentBullet.GetComponent<BulletBehaviour>().speed;
+                    currentBullet.GetComponent<Rigidbody2D>().velocity = Vector2.up * currentBullet.GetComponent<BulletBehaviour>().speed; // Sets bullet velocity directly upwards.
 
-                    Debug.LogError(mousePosition);
+                    Debug.LogError(playerPosition);
                 }
                 else
                 {
