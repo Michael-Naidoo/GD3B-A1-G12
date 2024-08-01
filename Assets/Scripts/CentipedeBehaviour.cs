@@ -56,10 +56,10 @@ namespace DefaultNamespace
         {
             bool isWithinBounds(int x, int y)
             {
-                return x >= 0 && x < gS.matrix.Length && y >= 0 && y < gS.matrix[0].Length && gS.matrix[targetX][targetY] != 1;
+                return x >= 0 && x < gS.matrix.Length && y >= 0 && y < gS.matrix[0].Length;
             }
 
-            if ((direction == DesiredDirection.Left || direction == DesiredDirection.Right) && (targetX == 0 || currentX == gS.matrix.Length) && targetY == 15 && up)
+            if ((targetX == 0 || targetX == gS.matrix.Length) && targetY == 15 && targetX == gS.matrix.Length - 1 && up)
             {
                 Debug.Log("Cenntipiece has reached y = 15");
                 previousDirection = direction;
@@ -68,7 +68,7 @@ namespace DefaultNamespace
                 targetY--;
                 up = false;
             }
-            if ((direction == DesiredDirection.Left || direction == DesiredDirection.Right) && (targetX == 0 || currentX == gS.matrix.Length) && targetY == 0)
+            if ((direction == DesiredDirection.Left || direction == DesiredDirection.Right) && (targetX == 0 || targetX == gS.matrix.Length -1) && targetY == 0)
             {
                 previousDirection = direction;
                 direction = DesiredDirection.Up;
@@ -78,19 +78,22 @@ namespace DefaultNamespace
             }
             if (direction == DesiredDirection.Down)
             {
-                if (previousDirection == DesiredDirection.Right && isWithinBounds(currentX - 1, currentY) || gS.matrix[currentX - 1][currentY] == 1)
-                {
-                    previousDirection = direction;
-                    direction = DesiredDirection.Left;
-                    currentX = targetX;
-                    targetX--;
-                }
-                else if (previousDirection == DesiredDirection.Left && isWithinBounds(currentX + 1, currentY) || gS.matrix[currentX + 1][currentY] == 1)
+                Debug.Log("Moving Down");
+                if (previousDirection == DesiredDirection.Left && (isWithinBounds(currentX + 1, currentY) || gS.matrix[currentX + 1][currentY] == 1))
                 {
                     previousDirection = direction;
                     direction = DesiredDirection.Right;
                     currentX = targetX;
+                    currentY = targetY;
                     targetX++;
+                }
+                else if (previousDirection == DesiredDirection.Right && (isWithinBounds(currentX - 1, currentY) || gS.matrix[currentX - 1][currentY] == 1))
+                {
+                    previousDirection = direction;
+                    direction = DesiredDirection.Left;
+                    currentX = targetX;
+                    currentY = targetY;
+                    targetX--;
                 }
                 else if (isWithinBounds(currentX, currentY - 1))
                 {
@@ -99,22 +102,40 @@ namespace DefaultNamespace
                     currentY = targetY;
                     targetY--;
                 }
-            }
-            if (direction == DesiredDirection.Up)
-            {
-                if (previousDirection == DesiredDirection.Right && isWithinBounds(currentX - 1, currentY) || gS.matrix[currentX - 1][currentY] == 1)
+                else if (isWithinBounds(currentX - 1, currentY))
                 {
                     previousDirection = direction;
                     direction = DesiredDirection.Left;
+                    currentY = targetY;
                     currentX = targetX;
                     targetX--;
                 }
-                else if (previousDirection == DesiredDirection.Left && isWithinBounds(currentX + 1, currentY) || gS.matrix[currentX + 1][currentY] == 1)
+                else if (isWithinBounds(currentX + 1, currentY))
+                {
+                    previousDirection = direction;
+                    direction = DesiredDirection.Right;
+                    currentY = targetY;
+                    currentX = targetX;
+                    targetX++;
+                }
+            }
+            if (direction == DesiredDirection.Up)
+            {
+                if (previousDirection == DesiredDirection.Left && (isWithinBounds(currentX + 1, currentY) || gS.matrix[currentX + 1][currentY] == 1))
                 {
                     previousDirection = direction;
                     direction = DesiredDirection.Right;
                     currentX = targetX;
+                    currentY = targetY;
                     targetX++;
+                }
+                else if (previousDirection == DesiredDirection.Right && (isWithinBounds(currentX - 1, currentY) || gS.matrix[currentX - 1][currentY] == 1))
+                {
+                    previousDirection = direction;
+                    direction = DesiredDirection.Left;
+                    currentX = targetX;
+                    currentY = targetY;
+                    targetX--;
                 }
                 else if (isWithinBounds(currentX, currentY - 1))
                 {
@@ -149,7 +170,14 @@ namespace DefaultNamespace
             }
             else if (direction == DesiredDirection.Left)
             {
-                if (currentX - 1 == 0)
+                if (gS.matrix[currentX - 1][currentY] == 1)
+                {
+                    previousDirection = direction;
+                    direction = DesiredDirection.Down;
+                    currentY = targetY;
+                    targetY--;
+                }
+                else if (currentX - 1 == 0)
                 {
                     previousDirection = direction;
                     direction = DesiredDirection.Down;
@@ -191,7 +219,7 @@ namespace DefaultNamespace
                 if (gS.matrix[currentX + 1][currentY] == 1)
                 {
                     previousDirection = direction;
-                    direction = DesiredDirection.Up;
+                    direction = DesiredDirection.Down;
                     currentY = targetY;
                     targetY--;
                 }
