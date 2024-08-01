@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   centipedeShot: {fileID: -2798637111607638080}
+  canShoot: 1
 --- !u!50 &-1049189919167656392
 Rigidbody2D:
   serializedVersion: 4
