@@ -97,6 +97,12 @@ public class GridSystem : MonoBehaviour
         {
             TempSpawnCenti();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+            
+        }
     }
     
 
