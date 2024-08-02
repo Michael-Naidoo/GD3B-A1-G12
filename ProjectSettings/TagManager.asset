@@ -8,15 +8,16 @@ TagManager:
   - CentiPiece
   - Mushroom
   - BulletDestroyZone
+  - PlayerMoveZone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bullet
   - Water
   - UI
-  - 
-  - 
+  - PlayerMoveZone
+  - GridSquare
   - 
   - 
   - 
