@@ -24,7 +24,8 @@ namespace DefaultNamespace
             {
                 hp = 4;
                 gS.matrix[xVal][yVal] = 0;
-                gS.score++;
+                gS.score += 50;
+                gS.UpdateScoreText();
             }
         }
     }

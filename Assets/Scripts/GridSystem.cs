@@ -4,10 +4,13 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
+using TMPro;
 
 public class GridSystem : MonoBehaviour
 {
     public int score;
+    public int highScore;
     public int currentCentiCount = 0; 
     public int maxCentiPieces = 15;
     public float centiSpeed;
@@ -25,7 +28,10 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private GameObject spawnGameObject;
     [FormerlySerializedAs("canvasGO")] [SerializeField] private GameObject parentGameObject;
     [SerializeField] private GameObject CentiPiece;
-    
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+
     [SerializeField] private float offsetMultX;
     [SerializeField] private float offsetAddX; 
     [SerializeField] private float offsetMultY;
@@ -42,6 +48,10 @@ public class GridSystem : MonoBehaviour
         }
         
         InstantiateMatrix(matX, matY);
+
+        LoadHighScore(); 
+        UpdateScoreText(); 
+        UpdateHighScoreText();
     }
 
     void TempSpawnCenti()
@@ -129,6 +139,40 @@ public class GridSystem : MonoBehaviour
                     Debug.LogError("Failed to instantiate gridSquare!");
                 }
             }
+        }
+
+
+    }
+
+    public void UpdateScoreText()
+    {
+        scoreText.text = "" + score;
+    }
+
+
+    public void UpdateHighScoreText()
+    {
+        highScoreText.text = "" + highScore;
+    }
+
+    public void SaveHighScore()
+    {
+        PlayerPrefs.SetInt("HighScore", highScore);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadHighScore()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
+
+    public void CheckHighScore()
+    {
+        if (score > highScore)
+        {
+            highScore = score;
+            SaveHighScore();
+            UpdateHighScoreText();
         }
     }
 }

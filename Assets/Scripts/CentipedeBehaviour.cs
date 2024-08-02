@@ -253,7 +253,9 @@ namespace DefaultNamespace
         {
             gS.currentCentiCount--;
             gS.matrix[targetX][targetY] = 1;
-            gS.score += 10;
+            gS.score += 200;
+            gS.UpdateScoreText();
+            gS.CheckHighScore();
             Debug.Log(gS.matrix[targetX][targetY]);
             Destroy(gameObject);
         }
