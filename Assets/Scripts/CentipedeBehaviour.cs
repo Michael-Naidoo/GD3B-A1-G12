@@ -1,6 +1,8 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 namespace DefaultNamespace
 {
@@ -239,6 +241,14 @@ namespace DefaultNamespace
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
+
         public void HasBeenHit()
         {
             gS.currentCentiCount--;
@@ -248,4 +258,7 @@ namespace DefaultNamespace
             Destroy(gameObject);
         }
     }
+
+
+   
 }
