@@ -13,13 +13,8 @@ GameObject:
   - component: {fileID: 453263256683926670}
   - component: {fileID: 7583663497625866702}
   - component: {fileID: -1049189919167656392}
-<<<<<<< HEAD
   - component: {fileID: -7976147175317286035}
   m_Layer: 0
-=======
-  - component: {fileID: -2798637111607638080}
-  m_Layer: 3
->>>>>>> 9bd5a4eb93245b1ca13e3a394a639f9c1351f165
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,13 +175,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-<<<<<<< HEAD
   m_Constraints: 0
 --- !u!82 &-7976147175317286035
-=======
-  m_Constraints: 5
---- !u!82 &-2798637111607638080
->>>>>>> 9bd5a4eb93245b1ca13e3a394a639f9c1351f165
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
