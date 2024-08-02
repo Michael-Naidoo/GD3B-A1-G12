@@ -154,7 +154,7 @@ namespace DefaultNamespace
                     currentY = targetY;
                     targetY++;
                 }
-                else if (currentX - 1 == 0)
+                else if (currentX - 1 == 0 || currentX - 2 == 1)
                 {
                     previousDirection = direction;
                     direction = DesiredDirection.Up;
@@ -243,6 +243,7 @@ namespace DefaultNamespace
         {
             gS.currentCentiCount--;
             gS.matrix[targetX][targetY] = 1;
+            gS.score += 10;
             Debug.Log(gS.matrix[targetX][targetY]);
             Destroy(gameObject);
         }

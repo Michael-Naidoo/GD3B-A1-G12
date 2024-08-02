@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class GridSystem : MonoBehaviour
 {
+    public int score;
     public int currentCentiCount = 0; 
     public int maxCentiPieces = 15;
     public float centiSpeed;
