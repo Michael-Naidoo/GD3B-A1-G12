@@ -154,6 +154,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &241537884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241537885}
+  m_Layer: 0
+  m_Name: SpawnCentipedeZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &241537885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241537884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.42, y: 8.85, z: 0.024157751}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &346800478
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +243,7 @@ MonoBehaviour:
   matX: 30
   matY: 30
   gridSquare: {fileID: 2624382522483752420, guid: e4c6adf13715f0743856f2e0701d0834, type: 3}
+  spawnGameObject: {fileID: 241537884}
   parentGameObject: {fileID: 146310781}
   CentiPiece: {fileID: 4558665189659924853, guid: 052b6d9873e8f484aa08c3b99d0a79a3, type: 3}
   offsetMultX: 0.25
@@ -1035,3 +1067,4 @@ SceneRoots:
   - {fileID: 592735782}
   - {fileID: 746546859}
   - {fileID: 1765477626}
+  - {fileID: 241537885}

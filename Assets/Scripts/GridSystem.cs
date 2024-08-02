@@ -22,6 +22,7 @@ public class GridSystem : MonoBehaviour
     public GameObject[][] MatrixGameObjects;
 
     [SerializeField] private GameObject gridSquare;
+    [SerializeField] private GameObject spawnGameObject;
     [FormerlySerializedAs("canvasGO")] [SerializeField] private GameObject parentGameObject;
     [SerializeField] private GameObject CentiPiece;
     
@@ -45,7 +46,6 @@ public class GridSystem : MonoBehaviour
 
     void TempSpawnCenti()
     {
-
         tempTimer -= Time.deltaTime;
         if (tempTimer <= 0)
         {
@@ -59,9 +59,8 @@ public class GridSystem : MonoBehaviour
                 if (centiCount > 0)
                 {
                     centiCount--;
-                    Vector3 pos = MatrixGameObjects[15][29].transform.position;
-                    GameObject centi = Instantiate(CentiPiece, parentGameObject.transform, false);
-                    centi.transform.position = pos;
+                    Vector3 spawnPosition = spawnGameObject.transform.position; 
+                    GameObject centi = Instantiate(CentiPiece, spawnPosition, Quaternion.identity, parentGameObject.transform); 
                     centi.GetComponent<CentipedeBehaviour>().speed = centiSpeed;
                     centi.GetComponent<CentipedeBehaviour>().targetX = 16;
                     centi.GetComponent<CentipedeBehaviour>().targetY = 29;
