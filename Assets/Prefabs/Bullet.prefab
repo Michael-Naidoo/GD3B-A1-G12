@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 453263256683926670}
   - component: {fileID: 7583663497625866702}
   - component: {fileID: -1049189919167656392}
-  - component: {fileID: -2798637111607638080}
+  - component: {fileID: -7976147175317286035}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  centipedeShot: {fileID: -2798637111607638080}
+  centipedeShot: {fileID: -7976147175317286035}
   canShoot: 1
 --- !u!50 &-1049189919167656392
 Rigidbody2D:
@@ -175,7 +175,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!82 &-2798637111607638080
+--- !u!82 &-7976147175317286035
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,7 +193,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

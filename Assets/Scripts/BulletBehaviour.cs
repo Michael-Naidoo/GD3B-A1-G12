@@ -7,7 +7,7 @@ namespace DefaultNamespace
     {
         [SerializeField] public float speed; // Made public.
 
-        public AudioSource centipedeShot;
+       
 
         // Added variable to check if player can shoot.
         public bool canShoot = true;
@@ -15,6 +15,7 @@ namespace DefaultNamespace
         private void Awake()
         {
             canShoot = true;
+            
         }
 
 
@@ -27,11 +28,14 @@ namespace DefaultNamespace
         void Move()
         {
             transform.Translate(Vector3.up * Time.deltaTime * speed, Space.World);
+            
         }
 
         private void OnTriggerEnter2D(Collider2D other)
-        {
+        { 
+            
             Debug.Log("Hit Confirmed");
+            
             if (other.gameObject.CompareTag("CentiPiece"))
             {
                 
@@ -45,6 +49,8 @@ namespace DefaultNamespace
                 other.gameObject.transform.GetChild(0).GetComponent<MushroomHandler>().HasBeenHit();
                 Destroy(gameObject);
                 canShoot = true;
+                
+                
 
             }
 

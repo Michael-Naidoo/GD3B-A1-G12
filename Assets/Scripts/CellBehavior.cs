@@ -22,6 +22,8 @@ namespace DefaultNamespace
         private bool isMoving = false;
         public bool isLastCell = false;
 
+        public AudioSource audioSource;
+
         private void Start()
         {
             // get ref to the grid system
@@ -42,10 +44,14 @@ namespace DefaultNamespace
             if (gS.matrix[xVal][yVal] == 1)
             { 
                 mushroom.SetActive(true);
+                audioSource.Play();
+
+                
             }
             else if (gS.matrix[xVal][yVal] == 0)
             {
                 mushroom.SetActive(false);
+                
             }
 
             
@@ -54,7 +60,7 @@ namespace DefaultNamespace
         private IEnumerator MoveCell()
         {
             yield return new WaitForSeconds(moveDelay);
-           
+          
         }
 
         public void GetCellData(int x, int y)
